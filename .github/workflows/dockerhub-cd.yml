@@ -26,3 +26,16 @@ jobs:
       - name: Push Docker image
         run: |
           docker push dqthai/product-api:latest
+
+  deploy:
+    runs-on: self-hosted
+    needs: build-and-push
+
+    steps:
+      - name: Deploy to local Docker Engine
+        shell: powershell
+        run: |
+          Set-Location "D:\HK_VII\LTHDV\BaiTapPROMPT1\product-api"
+          docker compose -f docker-compose-prod.yaml pull
+          docker compose -f docker-compose-prod.yaml up -d
+          docker compose -f docker-compose-prod.yaml ps
