@@ -42,7 +42,7 @@ jobs:
           MONGO_URI: mongodb://localhost:27017/productdb
         run: |
           nohup npm start > app.log 2>&1 &
-          sleep 10
+          sleep 3
 
       - name: Check API health
         run: curl --fail http://localhost:3000/health
