@@ -47,6 +47,10 @@ jobs:
       - name: Check API health
         run: curl --fail http://localhost:3000/health
 
+      - name: Test API Headers
+        run : curl --fail --head http://localhost:3000/health
+
+        
       - name: Test Create Product
         run: |
           curl --fail --request POST \
